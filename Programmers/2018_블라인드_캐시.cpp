@@ -1,25 +1,50 @@
-#include <iostream>
+#include <string>
+#include <deque>
+#include <vector>
+#include <algorithm>
 using namespace std;
 
-int N, M;
+deque <string> dq;
 
-int solution(){
-    int sum = 0;
-    int cnt = 0;
-    while(sum<=N*M){
-        if( sum%M != 0) cnt++;
-        sum += N;
-    }    
-    return cnt;
-}
-
-int main(){
-    ios::sync_with_stdio(false);
-    cin.tie(0); cout.tie(0);
-
-    cin >> N >> M;
+int solution(int cacheSize, vector<string> cities) {
+    int answer = 0;
     
-    cout << solution();
+    if(cacheSize==0) return cities.size()*5;
+    
+    for(int i=0; i<cities.size(); i++){
 
-    return 0;
+        string city=cities[i];
+        transform(city.begin(), city.end(), city.begin(), ::tolower);
+
+        bool flag = false;
+
+        for(int j=0; j<dq.size(); j++){
+            if(dq[j]==city){ // hit
+                flag = true;
+
+                deque <string> ndq;
+                for(int k=0; k<dq.size(); k++){
+                    if(dq[k]==city) continue;
+                    ndq.push_back(dq[k]);
+                }
+                ndq.push_back(dq[j]);
+
+                dq.clear();
+                dq = ndq;
+                answer += 1;
+
+                break;
+            }
+        }
+
+        // miss
+        if(!flag){
+            if(dq.size()==cacheSize)
+                dq.pop_front();
+            dq.push_back(city);
+            answer += 5;
+        }   
+    }
+    
+    return answer;
 }
