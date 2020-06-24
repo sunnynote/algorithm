@@ -1,7 +1,7 @@
 /**
  * 200624
  * BOJ 10971 외판원 순회 2
- * next_permutation
+ * 조합 DFS
  * */
 
 #include <iostream>
