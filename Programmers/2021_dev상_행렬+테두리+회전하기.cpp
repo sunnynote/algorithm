@@ -26,27 +26,20 @@ void dfs(int sx, int sy, int x, int y, int d, int val){
     int ny = y + dy[d];
     
     if( !(x1<=nx && nx<=x2 && y1<=ny && ny<=y2) ){ // 범위를 벗어난다면
-        
         nx -= dx[d];
         ny -= dy[d];
         
-        nx += dx[d+1];
-        ny += dy[d+1];
+        d++;
         
-        int tmp_val = map[nx][ny];
-        map[nx][ny] = val;
-         
-        dfs(sx, sy, nx, ny, d+1, tmp_val);
-    }
-    else{ // 범위를 벗어나지 않는다면
-        int tmp_val = map[nx][ny];
-        map[nx][ny] = val;
-        
-        dfs(sx, sy, nx, ny, d, tmp_val);
+        nx += dx[d];
+        ny += dy[d];
     }
     
-}
+    int tmp_val = map[nx][ny];
+    map[nx][ny] = val;
 
+    dfs(sx, sy, nx, ny, d, tmp_val);    
+}
 
 vector<int> solution(int rows, int columns, vector<vector<int>> queries) {
     vector<int> answer;
