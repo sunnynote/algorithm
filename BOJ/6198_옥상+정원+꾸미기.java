@@ -24,8 +24,8 @@ public class p6198 {
                 st.pop();
             }
 
+            ans += st.size();
             st.push(cur);
-            ans += (st.size()-1);
         }
 
         System.out.println(ans);
