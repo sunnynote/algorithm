@@ -1,3 +1,9 @@
+/**
+ * 22-02-13
+ * BOJ 14225 부분수열의 합
+ * 재귀
+ */
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
