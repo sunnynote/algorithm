@@ -54,10 +54,9 @@ public class test {
       int nx = x + dx[i];
       int ny = y + dy[i];
 
-      if(0<=nx && nx<N && 0<=ny && ny<M){
+      if(0<=nx && nx<N && 0<=ny && ny<M)
         if(arr[x][y] > arr[nx][ny])
           chk[x][y] += dfs(nx, ny);
-      }
     }
     return chk[x][y];
   }
