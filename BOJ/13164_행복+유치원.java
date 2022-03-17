@@ -36,7 +36,6 @@ public class test2 {
     for(int i=0; i<N-K; i++){
       ans += diff[i];
     }
-
     System.out.println(ans);
   }
 }
